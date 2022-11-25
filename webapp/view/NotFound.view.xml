@@ -1,0 +1,8 @@
+<mvc:View controllerName="skoda.skoleni.controller.NotFound"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <MessagePage text="404 Not Found" icon="sap-icon://error" description="Check your URL">
+    
+    </MessagePage>
+</mvc:View>

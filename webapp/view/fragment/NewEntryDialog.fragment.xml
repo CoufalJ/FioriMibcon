@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog afterOpen="handleAfterOpenNewEntryDialog">
+        <customHeader>
+            <Toolbar>
+                <Title text="Přidat záznam" />
+                <ToolbarSpacer />
+                <Button tooltip="Zavřít" icon="sap-icon://decline" press="handleCloseNewEntryDialog" />
+            </Toolbar>
+        </customHeader>
+        <content>
+            <form:SimpleForm editable="true" layout="ResponsiveGridLayout" emptySpanM="3" columnsM="1" labelSpanM="4">
+                <Label text="Jmeno" required="true"/>
+                <Input value="{entryModel>/jmeno}"/>
+                <Label text="Auto" required="true"/>
+                <Input value="{entryModel>/auto}"/>
+                <Label text="Model" required="true"/>
+                <Input value="{entryModel>/model}"/>
+                <Label text="Boural">
+                </Label>
+                <CheckBox selected="{entryModel>/boural}" />
+                <Label text="Hodnoceni">
+                </Label>
+                <RatingIndicator value="{entryModel>/hodnoceni}"/>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button icon="sap-icon://add-document" text="Vytvořit" press="handleAddNewEntry"></Button>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

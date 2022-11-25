@@ -1,0 +1,81 @@
+<mvc:View controllerName="skoda.skoleni.controller.Main" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Table items="{mainModel>/}" growing="true" growingThreshold="10" growingScrollToLoad="true" mode="MultiSelect" id="idTable" autoPopinMode="true">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title id="idTableTitle" text="Počet záznamů ({= ${mainModel>/}.length})" />
+                        <ToolbarSpacer />
+                        <SearchField id="searchField" width="50%" placeholder="Search for..." enableSuggestions="true" search=".onSearch" suggest=".onSuggest">
+                            <SuggestionItem text="{path:'mainModel>jmeno'}" />
+                        </SearchField>
+                        <Button text="{parts: [{ path: 'device>/system/desktop'},{value: 'Smazat'}],formatter: '.formatter.showIconsOnly'}" icon="sap-icon://delete" type="Emphasized" press="handleDeleteAllEntries" />
+                        <Button text="{parts: [{ path: 'device>/system/desktop'},{value: 'Přidat'}],formatter: '.formatter.showIconsOnly'}" icon="sap-icon://add" type="Emphasized" press="handleOpenNewDialog" />
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column hAlign="Center">
+                        <header>
+                            <Text text="Jmeno" />
+                        </header>
+                    </Column>
+                    <Column hAlign="Center">
+                        <header>
+                            <Text text="Auto" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="Model" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="Boural" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="Neboural" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="Hodnocení" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="Hodnocení Text" />
+                        </header>
+                    </Column>
+                    <Column >
+                        <header>
+                            <Text text="Karosérie"/>
+                        </header>
+                    </Column>
+                    <Column hAlign="End" importance="High">
+                        <header>
+                            <Text text="Akce" />
+                        </header>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="handleOpenDetail" >
+                        <cells>
+                            <ObjectStatus text="{mainModel>jmeno}" state="Warning" inverted="true"/>
+                            <Text text="{mainModel>auto}" />
+                            <Text text="{mainModel>model}" />
+                            <CheckBox selected="{mainModel>boural}" displayOnly="true" />
+                            <CheckBox selected="{= ${mainModel>boural} !== true}" displayOnly="true" />
+                            <RatingIndicator value="{mainModel>hodnoceni}" editable="false" visible="{ parts: [{path:'mainModel>jmeno'}, {path:'mainModel>auto'}, {path:'mainModel>model'}], formatter: '.formatter.showRating' }" />
+                            <Text text="{mainModel>hodnoceni}" />
+                            <Button icon="{ parts: [{path:'mainModel>karoserie'}], formatter: '.formatter.showIconForBodyType' }"/>
+                            <Button type="Transparent" icon="sap-icon://delete" press="handleDeleteEntry"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
